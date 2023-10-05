@@ -1,0 +1,14 @@
+{
+    "name": "",
+    "release": "",
+    "duration":"",
+    "songs":{
+        "song1":{
+            "song_name":"",
+            "song_duratiion":"",
+            "song_lyrics":"",
+            "song_topic":"",
+            "song_emotions":""
+        }
+    }
+}
