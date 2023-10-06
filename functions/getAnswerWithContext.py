@@ -8,7 +8,6 @@ def get_answer_with_context(query, openai_key):
     print("loading answer engine")
     llm = ChatOpenAI(openai_api_key=openai_key, temperature=0.7, model_name="gpt-3.5-turbo")
 
-
     segments = get_relevant_segments(query, openai_key)
 
     print("load artist data")
@@ -18,9 +17,13 @@ def get_answer_with_context(query, openai_key):
     prompt = PromptTemplate(
         input_variables=["contextData", "query"],
         template="""
-        {contextData}
+        Given a human interaction with the query: "{query}", respond in a conversational manner. 
+        If the query diverts too much from the topic of the artist "SicHat", steer the conversation back towards that topic. 
+        Do not create fictional personas; respond directly to the query.    
         
-        Given the provided data, answer the querstion: {query} - about the artist SicHat.                            
+        You can use the following context variables: {contextData} to help you answer the query.
+        
+        Try to keep it short and concise. Unless you are specifically asked to do so.                   
         """,
     )
 

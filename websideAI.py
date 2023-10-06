@@ -1,8 +1,7 @@
 import os
 from dotenv import load_dotenv
-from functions.filterQueryIntention import filter_query_intention
 from functions.getAnswerWithContext import get_answer_with_context
-from functions.handleInteraction import handle_interaction
+
 
 
 # Manually load the .env file (if you're using python-dotenv)
@@ -22,12 +21,7 @@ def websideAI():
             print("Goodbye!")
             break
 
-        result = filter_query_intention(user_query, openai_key)
-        
-        if(result == "True"):
-            response = get_answer_with_context(user_query, openai_key)
-        else:
-            response = handle_interaction(user_query, openai_key)
+        response = get_answer_with_context(user_query, openai_key)
         
         print(response)
 
