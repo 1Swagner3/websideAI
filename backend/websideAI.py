@@ -11,20 +11,12 @@ load_dotenv()
 openai_key = os.environ.get("OPENAI_KEY")
 
 
-def websideAI():
+def websideAI(user_query):
     print("Starting AI")
     
-    while True:
-        user_query = input("\nEnter query (type 'exit' to end): ")
-
-        if user_query.lower() in ["exit", "quit"]:
-            print("Goodbye!")
-            break
-
-        response = get_answer_with_context(user_query, openai_key)
+    if user_query.lower() in ["exit", "quit"]:
+        return "Goodbye!"
         
-        print(response)
-
-
-if __name__ == "__main__":
-    websideAI()
+    response = get_answer_with_context(user_query, openai_key)
+        
+    return response
