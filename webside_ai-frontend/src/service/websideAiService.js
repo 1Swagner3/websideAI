@@ -9,3 +9,5 @@ async function sendQuery(query) {
     const data = await response.json();
     return data.response;
 }
+
+export default sendQuery
