@@ -1,0 +1,13 @@
+.user{
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.ai{
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(175, 255, 201);
+    margin-bottom: 0.5rem;
+}
