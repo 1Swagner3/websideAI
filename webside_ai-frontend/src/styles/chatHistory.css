@@ -28,3 +28,15 @@
         opacity: 0;
     }
 }
+
+@keyframes blinkingCursor {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 0;}
+  }
+  
+  .typingEffect::after {
+    content: '|';  /* Cursor */
+    animation: blinkingCursor 1s infinite;
+  }
+  

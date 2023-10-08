@@ -20,6 +20,7 @@ function ChatComponent() {
       const aiResponse = await sendQuery(currentQuery);
       setLoading(false);
 
+      //typingSimulation({text: currentQuery, setMessages, prevMessages: messages});
       setMessages(prevMessages => [...prevMessages, { sender: 'ai', text: aiResponse }]);
     };
     
