@@ -1,13 +1,11 @@
+import BackgroundWrapper from "./components/background";
 import ChatComponent from "./components/chatComponent";
-import InputField from "./components/inputField";
+
 
 function App() {
   return (
     <>
-      <h1>Hello world!</h1>
-      <div>
-        <ChatComponent></ChatComponent>
-      </div>
+        <BackgroundWrapper component={<ChatComponent />}></BackgroundWrapper>
     </>
   );
 }
