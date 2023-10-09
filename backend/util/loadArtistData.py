@@ -16,3 +16,13 @@ def load_artist_data():
         "album_data": album_data,
         # ...
     }
+
+def load_lyrics(song_title):
+    with open(f"backend/artistData/lyrics/{song_title}.txt", "r") as file:
+        lyrics = file.read()
+    
+    return lyrics
+
+def load_album_data():
+    album_data = get_spotify_data
+    return album_data
