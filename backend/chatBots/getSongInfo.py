@@ -2,6 +2,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from util.getSpotifyData import get_spotify_data
+from util.formatSongTitle import format_song_title
 
 
 def get_song_info(query, openai_key):
@@ -23,7 +24,10 @@ def get_song_info(query, openai_key):
     )
 
     chain = LLMChain(llm=llm, prompt=prompt)
+    
     result = chain.run({"artist_data": artist_data, "query": query})
-    song_title = result.split('"')[-2]
+    
+    song_title = format_song_title(result)
     print("found song: ", song_title)
-    return result
+    
+    return song_title
