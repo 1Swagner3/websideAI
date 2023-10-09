@@ -32,8 +32,13 @@ def load_artist_data(segments, query):
     }
 
 def load_lyrics(song_title):
-    with open(f"backend/artistData/lyrics/{song_title}.txt", "r") as file:
-        lyrics = file.read()
+    try:
+        with open(f"backend/artistData/lyrics/{song_title}.txt", "r") as file:
+            lyrics = file.read()
+            print("Loaded lyrics SUCCESSFULLY")
+    except:
+        lyrics = ""
+        
     return lyrics
 
 def load_album_data():
