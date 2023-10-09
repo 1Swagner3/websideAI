@@ -3,21 +3,27 @@ from util.getSpotifyData import get_spotify_data
 from chatBots.getSongInfo import get_song_info
 
 
-def load_artist_data(segments, query, openai_key):
-    # Read biography
+def load_artist_data(segments, query):
+    
+    # Load Biography
     if "biography" in segments:
         with open("backend/artistData/biography.txt", "r") as file:
             biography = file.read()
     else:
         biography = ""
         
+    # Load Song Lyrics
     if "lyrics" in segments:
-        song_title = get_song_info(query, openai_key)
+        song_title = get_song_info(query)
         lyrics = load_lyrics(song_title)
+    else:
+        lyrics = "" 
 
     # Fetch Album Data from Spotify API
     if "album_data" in segments:
         album_data = load_album_data()
+    else:
+        album_data = {}
 
     return {
         "biography": biography,

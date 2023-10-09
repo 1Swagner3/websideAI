@@ -1,9 +1,14 @@
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
+import os
+from dotenv import load_dotenv
 
 
-def get_relevant_segments(query, openai_key):
+def get_relevant_segments(query):
+    load_dotenv()
+    openai_key = os.environ.get("OPENAI_KEY")
+    
     print("starting relevant segment search")
     llm = ChatOpenAI(
         openai_api_key=openai_key, temperature=0.7, model_name="gpt-3.5-turbo"

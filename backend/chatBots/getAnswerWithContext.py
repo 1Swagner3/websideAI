@@ -3,17 +3,22 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from chatBots.getRelevantSegments import get_relevant_segments
 from util.loadArtistData import load_artist_data
+import os
+from dotenv import load_dotenv
 
-def get_answer_with_context(query, openai_key):
+def get_answer_with_context(query):
+    load_dotenv()
+    openai_key = os.environ.get("OPENAI_KEY")
+    
     print("loading answer engine")
     llm = ChatOpenAI(
         openai_api_key=openai_key, temperature=0.7, model_name="gpt-3.5-turbo"
     )
 
-    segments = get_relevant_segments(query, openai_key)
+    segments = get_relevant_segments(query)
 
     print("load artist data")
-    artist_data = load_artist_data(segments, query, openai_key)
+    artist_data = load_artist_data(segments, query)
     context_data = {segment: artist_data.get(segment, "") for segment in segments}
 
     prompt = PromptTemplate(

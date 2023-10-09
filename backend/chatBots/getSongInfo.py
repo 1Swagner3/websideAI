@@ -3,9 +3,14 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from util.getSpotifyData import get_spotify_data
 from util.formatSongTitle import format_song_title
+import os
+from dotenv import load_dotenv
 
 
-def get_song_info(query, openai_key):
+def get_song_info(query):
+    load_dotenv()
+    openai_key = os.environ.get("OPENAI_KEY")
+    
     print("query song info bot")
     llm = ChatOpenAI(
         openai_api_key=openai_key, temperature=0.7, model_name="gpt-3.5-turbo"
