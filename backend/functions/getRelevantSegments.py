@@ -9,7 +9,7 @@ def get_relevant_segments(query, openai_key):
 
 
     prompt = PromptTemplate.from_template(
-        "Given a question about an artist like {query}, which parts of the artist's background should be included: biography, album, collaborations, concerts, or controversies? Only return a maximum of two selections, separated by a comma without a sentence."
+        "Given a question about an artist like {query}, which parts of the artist's background should be included: biography, album_data, collaborations, concerts, or controversies? Only return a maximum of two selections, separated by a comma without a sentence."
     )
     prompt.format(query=query)
 

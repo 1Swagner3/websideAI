@@ -1,5 +1,6 @@
 import json
 from functions.albumToText import json_to_text
+from functions.getSpotifyData import get_spotify_data
 
 
 def load_artist_data():
@@ -7,15 +8,13 @@ def load_artist_data():
     with open("backend/artistData/biography.txt", "r") as file:
         biography = file.read()
 
-    # Read and convert lyrics JSON to text
-    with open("backend/artistData/album.json", "r") as file:
-        lyrics_data = json.load(file)
-        lyrics = json_to_text(lyrics_data)
-
-    # Add more as needed
+    # Fetch Album Data from Spotify API
+    album_data = get_spotify_data
+    
+    
 
     return {
         "biography": biography,
-        "lyrics": lyrics,
+        "album_data": album_data,
         # ...
     }
