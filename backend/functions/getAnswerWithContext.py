@@ -4,9 +4,12 @@ from langchain.chains import LLMChain
 from functions.getRelevantSegments import get_relevant_segments
 from functions.loadArtistData import load_artist_data
 
+
 def get_answer_with_context(query, openai_key):
     print("loading answer engine")
-    llm = ChatOpenAI(openai_api_key=openai_key, temperature=0.7, model_name="gpt-3.5-turbo")
+    llm = ChatOpenAI(
+        openai_api_key=openai_key, temperature=0.7, model_name="gpt-3.5-turbo"
+    )
 
     segments = get_relevant_segments(query, openai_key)
 

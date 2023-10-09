@@ -10,8 +10,6 @@ def load_artist_data():
 
     # Fetch Album Data from Spotify API
     album_data = get_spotify_data
-    
-    
 
     return {
         "biography": biography,

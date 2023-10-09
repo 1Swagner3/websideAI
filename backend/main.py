@@ -5,14 +5,16 @@ from websideAI import websideAI
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/', methods=['POST'])
+
+@app.route("/", methods=["POST"])
 def ask():
     data = request.get_json()
-    user_query = data['query']
-    
+    user_query = data["query"]
+
     response = websideAI(user_query)
-    
+
     return jsonify({"response": response})
+
 
 if __name__ == "__main__":
     app.run(port=5000)

@@ -5,11 +5,15 @@ from langchain.chains import LLMChain
 
 def get_relevant_segments(query, openai_key):
     print("starting relevant segment search")
-    llm = ChatOpenAI(openai_api_key=openai_key, temperature=0.7, model_name="gpt-3.5-turbo")
-
+    llm = ChatOpenAI(
+        openai_api_key=openai_key, temperature=0.7, model_name="gpt-3.5-turbo"
+    )
 
     prompt = PromptTemplate.from_template(
-        "Given a question about an artist like {query}, which parts of the artist's background should be included: biography, album_data, collaborations, concerts, or controversies? Only return a maximum of two selections, separated by a comma without a sentence."
+        """Given a question about the artist SicHat like {query}, which parts of the artist's background should be included: 
+            biography, album_data, lyrics, collaborations, concerts, or controversies? 
+            Only return a maximum of two selections, separated by a comma without a sentence.
+        """
     )
     prompt.format(query=query)
 
