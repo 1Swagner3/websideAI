@@ -1,8 +1,9 @@
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-from functions.getRelevantSegments import get_relevant_segments
-from functions.loadArtistData import load_artist_data
+from chatBots.getRelevantSegments import get_relevant_segments
+from util.loadArtistData import load_artist_data
+from chatBots.getSongInfo import get_song_info
 
 
 def get_answer_with_context(query, openai_key):
@@ -16,6 +17,9 @@ def get_answer_with_context(query, openai_key):
     print("load artist data")
     artist_data = load_artist_data()
     context_data = {segment: artist_data.get(segment, "") for segment in segments}
+
+    if "lyrics" in segments:
+        result = get_song_info(query, openai_key)
 
     prompt = PromptTemplate(
         input_variables=["contextData", "query"],

@@ -1,6 +1,6 @@
 import json
-from functions.albumToText import json_to_text
-from functions.getSpotifyData import get_spotify_data
+from util.albumToText import json_to_text
+from util.getSpotifyData import get_spotify_data
 
 
 def load_artist_data():

@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from functions.getAnswerWithContext import get_answer_with_context
+from chatBots.getAnswerWithContext import get_answer_with_context
 
 
 # Manually load the .env file (if you're using python-dotenv)

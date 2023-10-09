@@ -11,7 +11,7 @@ def get_relevant_segments(query, openai_key):
 
     prompt = PromptTemplate.from_template(
         """Given a question about the artist SicHat like {query}, which parts of the artist's background should be included: 
-            biography, album_data, lyrics, collaborations, concerts, or controversies? 
+            biography, album_data, lyrics or controversies? 
             Only return a maximum of two selections, separated by a comma without a sentence.
         """
     )
