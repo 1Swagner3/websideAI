@@ -13,8 +13,8 @@ def load_artist_data(segments, query):
         
     # Load Song Lyrics
     if "lyrics" in segments:
-        song_title = get_song_info(query)
-        lyrics = load_lyrics(song_title)
+        song_data = get_song_info(query)
+        lyrics = load_lyrics(song_data.songName)
     else:
         lyrics = "" 
 

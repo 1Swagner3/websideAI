@@ -39,7 +39,6 @@ def get_relevant_segments(query):
     print("loading relevant segments")
     result = chain.run(query)
     segments = output_parser.parse(result)
-    #segments = [segment.strip() for segment in result.split(",")]
 
     print(f"segments found: {segments}")
     return segments

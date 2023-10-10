@@ -50,6 +50,16 @@ def get_discography(artist_id, artist_genres):
 
     return discography
 
+def get_all_track_names():
+    discography_data = get_spotify_data()
+    all_tracks = []
+
+    for album in discography_data:
+        for track in album["tracks"]:
+            all_tracks.append(track["track_name"])
+
+    return all_tracks
+
 
 def get_spotify_data():
     artist_name = "SicHat"
