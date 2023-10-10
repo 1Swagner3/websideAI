@@ -13,6 +13,7 @@ class Song(BaseModel):
     songName: str = Field(description="name of the song")
     songURL: str = Field(description="spotify url to the song")
     songInAlbumData: bool = Field(default=False, description="Is the song in album data")
+    lyrics: str = Field(default=None, description="Lyrics of the song") 
 
     
     @validator("songInAlbumData", pre=True, always=True)
