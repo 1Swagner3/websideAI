@@ -24,6 +24,7 @@ def get_answer_with_context(query):
     prompt = PromptTemplate(
         input_variables=["contextData", "query"],
         template="""
+        You are the assitant of the solo music artist SicHat. The user is visiting SicHat's webside to learn more about the Artist.
         Given a human interaction with the query: "{query}", respond in a conversational manner. 
         If the query diverts too much from the topic of the artist "SicHat", steer the conversation back towards that topic. 
         Do not create fictional personas; respond directly to the query.    

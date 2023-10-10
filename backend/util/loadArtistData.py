@@ -4,10 +4,9 @@ from chatBots.getSongInfo import get_song_info
 
 
 def load_artist_data(segments, query):
-    
     # Load Biography
     if "biography" in segments:
-        with open("backend/artistData/biography.txt", "r") as file:
+        with open("./artistData/biography.txt", "r") as file:
             biography = file.read()
     else:
         biography = ""

@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-langchain = "*"
 python-dotenv = "*"
 openai = "*"
 black = "*"
@@ -12,6 +11,7 @@ flask = "*"
 flask-cors = "*"
 requests = "*"
 spotipy = "*"
+langchain = {extras = ["all"], version = "*"}
 
 [dev-packages]
 
