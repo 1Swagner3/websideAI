@@ -6,7 +6,7 @@ from chatBots.songDoesNotExist import generate_song_does_not_exist_response
 from chatBots.getAnswerWithContext import get_answer_with_context
 from chatBots.getErrorMessages import formulate_error_message
 
-def validate_user_input(query, timeout_seconds=10):
+def validate_user_input(query, timeout_seconds=120):
     try:
         with concurrent.futures.ThreadPoolExecutor() as executor:
             future = executor.submit(_validate_user_input_logic, query)
