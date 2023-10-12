@@ -19,7 +19,7 @@ def get_song_info(query, spotify_data):
 
     print("query song info bot")
     llm = ChatOpenAI(
-        openai_api_key=openai_key, temperature=0.2, model_name="gpt-3.5-turbo"
+        openai_api_key=openai_key, temperature=0.3, model_name="gpt-3.5-turbo"
     )
 
     artist_data = spotify_data.discography
@@ -45,7 +45,6 @@ def get_song_info(query, spotify_data):
     chain = LLMChain(llm=llm, prompt=prompt)
 
     result = chain.run({"artist_data": artist_data, "query": query})
-    print("PROMPT RESULT :", result)
 
     song_data = parser.parse(result)
     print("Parser RESULT: ", song_data)

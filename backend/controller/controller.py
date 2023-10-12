@@ -1,11 +1,26 @@
+import concurrent.futures
 from chatBots.getRelevantSegments import get_relevant_segments
 from models.ArtistDataLoader import ArtistDataLoader
 from models.SpotifyData import SpotifyData
 from chatBots.songDoesNotExist import generate_song_does_not_exist_response
 from chatBots.getAnswerWithContext import get_answer_with_context
+from chatBots.getErrorMessages import formulate_error_message
+
+def validate_user_input(query, timeout_seconds=10):
+    try:
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            future = executor.submit(_validate_user_input_logic, query)
+            return future.result(timeout=timeout_seconds)
+
+    except concurrent.futures.TimeoutError:
+        print("runtime error")
+        return formulate_error_message("timeout")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return formulate_error_message("exception")
 
 
-def validate_user_input(query):
+def _validate_user_input_logic(query):
     segments = get_relevant_segments(query)
 
     spotifyData = SpotifyData("SicHat")
