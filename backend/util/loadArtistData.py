@@ -27,7 +27,7 @@ def load_artist_data(segments, query):
     return {
         "biography": biography,
         "album_data": album_data,
-        "lyrics": lyrics
+        "lyrics": song_data
     }
 
 def load_lyrics(song_title):
