@@ -6,20 +6,15 @@ from util.loadArtistData import load_artist_data
 import os
 from dotenv import load_dotenv
 
-def get_answer_with_context(query):
+
+def get_answer_with_context(query, context_data):
     load_dotenv()
     openai_key = os.environ.get("OPENAI_KEY")
-    
+
     print("loading answer engine")
     llm = ChatOpenAI(
-        openai_api_key=openai_key, temperature=0.7, model_name="gpt-3.5-turbo"
+        openai_api_key=openai_key, temperature=0.4, model_name="gpt-3.5-turbo"
     )
-
-    segments = get_relevant_segments(query)
-
-    print("load artist data")
-    artist_data = load_artist_data(segments, query)
-    context_data = {segment: artist_data.get(segment, "") for segment in segments}
 
     prompt = PromptTemplate(
         input_variables=["contextData", "query"],

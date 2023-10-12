@@ -10,10 +10,10 @@ from dotenv import load_dotenv
 def get_relevant_segments(query):
     load_dotenv()
     openai_key = os.environ.get("OPENAI_KEY")
-    
+
     output_parser = CommaSeparatedListOutputParser()
     format_instructions = output_parser.get_format_instructions()
-    
+
     print("starting relevant segment search")
     llm = ChatOpenAI(
         openai_api_key=openai_key, temperature=0.4, model_name="gpt-3.5-turbo"
@@ -23,7 +23,7 @@ def get_relevant_segments(query):
         template="""
         You are the assitant of the solo music artist SicHat. The user is visiting SicHat's webside to learn more about the Artist.
         Given a question about the artist SicHat like {query}, which of the following topics fits best: 
-        biography, album_data, lyrics or controversies? 
+        biography, album_data, lyrics, controversies or general interactions (like greetings etc.)? 
         Return two sections.
         
         Here is was description about what the different sections contain: 
@@ -35,10 +35,9 @@ def get_relevant_segments(query):
         {format_instructions}
         """,
         input_variables=["query"],
-        partial_variables={"format_instructions": format_instructions}
+        partial_variables={"format_instructions": format_instructions},
     )
-    
-    
+
     prompt.format(query=query)
 
     chain = LLMChain(llm=llm, prompt=prompt)

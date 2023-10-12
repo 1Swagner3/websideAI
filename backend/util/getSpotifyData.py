@@ -50,6 +50,7 @@ def get_discography(artist_id, artist_genres):
 
     return discography
 
+
 def get_all_track_names():
     discography_data = get_spotify_data()
     all_tracks = []

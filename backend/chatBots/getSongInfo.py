@@ -9,13 +9,15 @@ from util.getSpotifyData import get_all_track_names
 import os
 from dotenv import load_dotenv
 
+
 class Song(BaseModel):
     songName: str = Field(description="name of the song")
     songURL: str = Field(description="spotify url to the song")
-    songInAlbumData: bool = Field(default=False, description="Is the song in album data")
-    lyrics: str = Field(default=None, description="Lyrics of the song") 
+    songInAlbumData: bool = Field(
+        default=False, description="Is the song in album data"
+    )
+    lyrics: str = Field(default=None, description="Lyrics of the song")
 
-    
     @validator("songInAlbumData", pre=True, always=True)
     def check_if_song_is_in_song_list(cls, songInAlbumData, values):
         songName = values.get("songName")
@@ -23,11 +25,10 @@ class Song(BaseModel):
         return songName in songList
 
 
-
 def get_song_info(query):
     load_dotenv()
     openai_key = os.environ.get("OPENAI_KEY")
-    
+
     print("query song info bot")
     llm = ChatOpenAI(
         openai_api_key=openai_key, temperature=0.2, model_name="gpt-3.5-turbo"
@@ -35,7 +36,7 @@ def get_song_info(query):
 
     print("calling spotify api")
     artist_data = get_spotify_data()
-    
+
     parser = PydanticOutputParser(pydantic_object=Song)
 
     prompt = PromptTemplate(
@@ -56,10 +57,10 @@ def get_song_info(query):
     )
 
     chain = LLMChain(llm=llm, prompt=prompt)
-    
+
     result = chain.run({"artist_data": artist_data, "query": query})
     print("PROMPT RESULT :", result)
-    
+
     song_data = parser.parse(result)
     print("Parser RESULT: ", song_data)
 
