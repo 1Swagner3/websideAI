@@ -2,7 +2,6 @@ from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from chatBots.getRelevantSegments import get_relevant_segments
-from util.loadArtistData import load_artist_data
 import os
 from dotenv import load_dotenv
 

@@ -1,31 +1,19 @@
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-from util.getSpotifyData import get_spotify_data
-from util.formatSongTitle import format_song_title
 from langchain.output_parsers import PydanticOutputParser
-from langchain.pydantic_v1 import BaseModel, Field, validator
-from util.getSpotifyData import get_all_track_names
+from langchain.pydantic_v1 import BaseModel, Field
 import os
 from dotenv import load_dotenv
 
 
 class Song(BaseModel):
-    songName: str = Field(description="name of the song")
-    songURL: str = Field(description="spotify url to the song")
-    songInAlbumData: bool = Field(
-        default=False, description="Is the song in album data"
-    )
+    song_name: str = Field(description="name of the song")
+    song_url: str = Field(description="spotify url to the song")
     lyrics: str = Field(default=None, description="Lyrics of the song")
 
-    @validator("songInAlbumData", pre=True, always=True)
-    def check_if_song_is_in_song_list(cls, songInAlbumData, values):
-        songName = values.get("songName")
-        songList = get_all_track_names()
-        return songName in songList
 
-
-def get_song_info(query):
+def get_song_info(query, spotify_data):
     load_dotenv()
     openai_key = os.environ.get("OPENAI_KEY")
 
@@ -34,8 +22,7 @@ def get_song_info(query):
         openai_api_key=openai_key, temperature=0.2, model_name="gpt-3.5-turbo"
     )
 
-    print("calling spotify api")
-    artist_data = get_spotify_data()
+    artist_data = spotify_data.discography
 
     parser = PydanticOutputParser(pydantic_object=Song)
 
@@ -47,9 +34,8 @@ def get_song_info(query):
         Using the provided discography data: {artist_data}.
 
         Please respond with the following format:
-        songName: [name of the song]
-        songURL: [spotify url to the song]
-        songInAlbumData: [true/false if the song is in album data]
+        song_name: [name of the song]
+        song_url: [spotify url to the song]
         lyrics: [lyrics of the song, if available]
         
         {format_instructions}
