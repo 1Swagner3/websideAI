@@ -16,7 +16,7 @@ def load_artist_data(segments, query):
         lyrics = load_lyrics(song_data.songName)
         song_data.lyrics = lyrics
     else:
-        lyrics = "" 
+        song_data = {} 
 
     # Fetch Album Data from Spotify API
     if "album_data" in segments:

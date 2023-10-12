@@ -22,9 +22,16 @@ def get_relevant_segments(query):
     prompt = PromptTemplate(
         template="""
         You are the assitant of the solo music artist SicHat. The user is visiting SicHat's webside to learn more about the Artist.
-        Given a question about the artist SicHat like {query}, which parts of the artist's background should be included: 
+        Given a question about the artist SicHat like {query}, which of the following topics fits best: 
         biography, album_data, lyrics or controversies? 
-        Only return a maximum of two selections, separated by a comma without a sentence.
+        Return two sections.
+        
+        Here is was description about what the different sections contain: 
+        Biography: Information about how SicHat began. No information about songs or lyrics. 
+        Album Data: The entire discography of the artist. Songs that are not listed here were not released by the artist
+        Lyrics: Lyrics and other helpful song data to a song that the user might requested information about. 
+        Controversies: Controversal topics and opinions about the artist.
+        
         {format_instructions}
         """,
         input_variables=["query"],
@@ -37,7 +44,7 @@ def get_relevant_segments(query):
     chain = LLMChain(llm=llm, prompt=prompt)
 
     print("loading relevant segments")
-    result = chain.run(query)
+    result = chain.run({"query": query})
     segments = output_parser.parse(result)
 
     print(f"segments found: {segments}")
