@@ -30,7 +30,7 @@ def get_song_info(query):
     
     print("query song info bot")
     llm = ChatOpenAI(
-        openai_api_key=openai_key, temperature=0.7, model_name="gpt-3.5-turbo"
+        openai_api_key=openai_key, temperature=0.2, model_name="gpt-3.5-turbo"
     )
 
     print("calling spotify api")
@@ -44,6 +44,12 @@ def get_song_info(query):
         template="""
         Given the user query "{query}", identify which song from SicHat's discography best matches the query.
         Using the provided discography data: {artist_data}.
+
+        Please respond with the following format:
+        songName: [name of the song]
+        songURL: [spotify url to the song]
+        songInAlbumData: [true/false if the song is in album data]
+        lyrics: [lyrics of the song, if available]
         
         {format_instructions}
      """,

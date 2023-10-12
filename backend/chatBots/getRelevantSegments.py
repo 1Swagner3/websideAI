@@ -16,7 +16,7 @@ def get_relevant_segments(query):
     
     print("starting relevant segment search")
     llm = ChatOpenAI(
-        openai_api_key=openai_key, temperature=0.7, model_name="gpt-3.5-turbo"
+        openai_api_key=openai_key, temperature=0.4, model_name="gpt-3.5-turbo"
     )
 
     prompt = PromptTemplate(
