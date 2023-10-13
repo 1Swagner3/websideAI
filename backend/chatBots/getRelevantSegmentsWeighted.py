@@ -6,6 +6,7 @@ from util.segmentsParser import segments_parser
 import os
 from dotenv import load_dotenv
 
+
 def get_relevant_segments_weighted(query):
     load_dotenv()
     openai_key = os.environ.get("OPENAI_KEY")
@@ -16,7 +17,7 @@ def get_relevant_segments_weighted(query):
     )
 
     prompt = PromptTemplate(
-    template="""
+        template="""
     You are the assistant of the solo music artist SicHat. A user is visiting SicHat's website to learn more about the artist. They asked: "{query}". 
 
     Please rate the relevance of each topic to the user's query on a scale of 0 to 5, with 0 being irrelevant and 5 being most relevant:
@@ -36,16 +37,15 @@ def get_relevant_segments_weighted(query):
     controversies: [score],
     general_interaction: [score]
     """,
-    input_variables=["query"])
-
+        input_variables=["query"],
+    )
 
     chain = LLMChain(llm=llm, prompt=prompt)
 
     print("loading relevant segments")
     result = chain.run({"query": query})
-    print("PROMPT RESULT: ", result)
-    
+
     segments = segments_parser(result)
-    print(f"segments found: {segments}")
-    
+    print(f"SEGMENT RELEVANCE: {segments}")
+
     return segments

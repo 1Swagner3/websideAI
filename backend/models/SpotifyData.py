@@ -13,8 +13,8 @@ client_credentials_manager = SpotifyClientCredentials(
 )
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
+
 class SpotifyData:
-    
     def __init__(self, artist_name):
         print("Loading up SPOTIFY DATA CLASS")
         self.artist_name = artist_name
@@ -64,8 +64,8 @@ class SpotifyData:
                 all_tracks.append(track["track_name"])
 
         return all_tracks
-    
+
     def song_released_by_artist(self, track_name):
         all_tracks = self.get_all_track_names()
-        result =  track_name.lower() in (track.lower() for track in all_tracks)
+        result = track_name.lower() in (track.lower() for track in all_tracks)
         return result

@@ -1,11 +1,13 @@
 import concurrent.futures
-from chatBots.getRelevantSegments import get_relevant_segments
 from models.ArtistDataLoader import ArtistDataLoader
 from models.SpotifyData import SpotifyData
 from chatBots.songDoesNotExist import generate_song_does_not_exist_response
 from chatBots.getAnswerWithContext import get_answer_with_context
 from chatBots.getErrorMessages import formulate_error_message
 from chatBots.getRelevantSegmentsWeighted import get_relevant_segments_weighted
+from chatBots.getSicHatRelevance import get_user_query_relevance_weighted
+from chatBots.getIrrelevanceMessage import get_irrelevance_message
+
 
 def validate_user_input(query, timeout_seconds=120):
     try:
@@ -22,17 +24,22 @@ def validate_user_input(query, timeout_seconds=120):
 
 
 def _validate_user_input_logic(query):
+    query_relevance = get_user_query_relevance_weighted(query)
+
+    if query_relevance.get("irrelevant", 0) == 5:
+        return get_irrelevance_message(query)
+
     segments = get_relevant_segments_weighted(query)
 
     spotifyData = SpotifyData("SicHat")
     loader = ArtistDataLoader(spotifyData)
-    
+
     contextData = {}
     song_data = {}
-    
+
     if segments.get("album_data", 0) == 5 or segments.get("lyrics", 0) == 5:
         song_data = loader.load_song_data(query)
-        
+
         if not spotifyData.song_released_by_artist(song_data.song_name):
             return generate_song_does_not_exist_response(query)
 

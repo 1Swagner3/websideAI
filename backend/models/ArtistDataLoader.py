@@ -16,7 +16,7 @@ class ArtistDataLoader:
         song_data = get_song_info(query, self.spotify_data)
         self.song_data = song_data
         return song_data
-    
+
     def load_song_lyrics(self, song_data):
         lyrics = self._load_lyrics_from_file(song_data.song_name)
         song_data.lyrics = lyrics
