@@ -5,6 +5,7 @@ from models.SpotifyData import SpotifyData
 from chatBots.songDoesNotExist import generate_song_does_not_exist_response
 from chatBots.getAnswerWithContext import get_answer_with_context
 from chatBots.getErrorMessages import formulate_error_message
+from chatBots.getRelevantSegmentsWeighted import get_relevant_segments_weighted
 
 def validate_user_input(query, timeout_seconds=120):
     try:
@@ -21,7 +22,7 @@ def validate_user_input(query, timeout_seconds=120):
 
 
 def _validate_user_input_logic(query):
-    segments = get_relevant_segments(query)
+    segments = get_relevant_segments_weighted(query)
 
     spotifyData = SpotifyData("SicHat")
     loader = ArtistDataLoader(spotifyData)
@@ -29,21 +30,21 @@ def _validate_user_input_logic(query):
     contextData = {}
     song_data = {}
     
-    if "album_data" in segments or "lyrics" in segments:
+    if segments.get("album_data", 0) == 5 or segments.get("lyrics", 0) == 5:
         song_data = loader.load_song_data(query)
         
         if not spotifyData.song_released_by_artist(song_data.song_name):
             return generate_song_does_not_exist_response(query)
 
-    if "biography" in segments:
+    if segments.get("biography", 0) == 5:
         biography = loader.load_biography()
         contextData["biography"] = biography
 
-    if "album_data" in segments:
+    if segments.get("album_data", 0) == 5:
         album_data = loader.load_album_data()
         contextData["album_data"] = album_data
 
-    if "lyrics" in segments:
+    if segments.get("lyrics", 0) == 5:
         lyrics_data = loader.load_song_lyrics(song_data)
         contextData["lyrics"] = lyrics_data
 

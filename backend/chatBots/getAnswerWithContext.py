@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 
 def get_answer_with_context(query, context_data):
+    
     load_dotenv()
     openai_key = os.environ.get("OPENAI_KEY")
 
