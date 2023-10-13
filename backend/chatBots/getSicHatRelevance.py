@@ -26,14 +26,12 @@ def get_user_query_relevance_weighted(query):
         - Greeting: Is it a greeting?
         - Small Talk: Is it general small talk?
         - Irrelevant: Is the query completely irrelevant to SicHat?
-        - General Interaction: Is it a general interaction or question?
 
         Provide your ratings in the format:
         sichat: [score],
         greeting: [score],
         small_talk: [score],
-        irrelevant: [score],
-        general_interaction: [score]
+        irrelevant: [score]
         """,
         input_variables=["query"],
     )
