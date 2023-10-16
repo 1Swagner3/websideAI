@@ -7,9 +7,10 @@ type ChatInputFormProps = {
   query: string;
   setQuery: (value: string) => void;
   handleSubmit: (event: FormEvent) => void;
+  disableInput: boolean;
 };
 
-const ChatInputForm: React.FC<ChatInputFormProps> = ({ query, setQuery, handleSubmit }) => {
+const ChatInputForm: React.FC<ChatInputFormProps> = ({ query, setQuery, handleSubmit, disableInput }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input 
@@ -18,6 +19,7 @@ const ChatInputForm: React.FC<ChatInputFormProps> = ({ query, setQuery, handleSu
         onChange={(e: ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
         placeholder="Ask the AI..."
         className='inputField'
+        disabled={disableInput}
       />
       <button  
         type="submit"

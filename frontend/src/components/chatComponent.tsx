@@ -25,6 +25,7 @@ const ChatComponent: React.FC = () => {
       const aiResponse = await sendQuery(currentQuery);
       setLoading(false);
 
+
       setMessages(prevMessages => [...prevMessages, { sender: 'ai', text: aiResponse }]);
     };
     
@@ -38,6 +39,7 @@ const ChatComponent: React.FC = () => {
           handleSubmit={handleSubmit}
           setQuery={setQuery}
           query={query} 
+          disableInput={loading}
         />
       </div>
     );
