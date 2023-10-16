@@ -23,7 +23,7 @@ def get_query_too_long_message():
         Let the user know that the query is too long and can not be processed.
         Keep it short and concise.
         """,
-        input_variables=[]
+        input_variables=[],
     )
 
     chain = LLMChain(llm=llm, prompt=prompt)

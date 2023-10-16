@@ -31,7 +31,6 @@ def _validate_user_input_logic(query):
 
     
     query_relevance = get_user_query_relevance_weighted(query)
-
     if query_relevance.get("irrelevant", 0) == 5:
         return get_irrelevance_message(query)
 
