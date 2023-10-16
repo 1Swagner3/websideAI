@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../styles/chatHistory.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import renderTextWithLinks from '../util/renderTextWithLinks';
 
 type Message = {
   sender: 'user' | 'ai';
@@ -53,7 +54,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ messages, loading }) => {
         } else if (index !== messages.length - 1 || !typing) {
           return (
             <div className="ai" key={index}>
-              <span>{message.text}</span>
+              <span>{renderTextWithLinks(message.text)}</span>
             </div>
           );
         }

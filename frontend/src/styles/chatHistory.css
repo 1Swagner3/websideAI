@@ -17,6 +17,11 @@
 
 }
 
+a {
+    color: aqua;
+    text-decoration: none;
+}
+
 @keyframes opacity {
     0%{
         opacity: 0;
