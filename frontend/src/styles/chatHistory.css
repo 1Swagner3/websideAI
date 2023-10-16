@@ -14,12 +14,16 @@
 
 .loadingIcon{
     animation: opacity 1s infinite;
-
 }
 
 a {
     color: aqua;
     text-decoration: none;
+}
+
+.chat-history{
+    max-height: 30vh;
+    overflow: scroll;
 }
 
 @keyframes opacity {

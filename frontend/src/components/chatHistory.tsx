@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../styles/chatHistory.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
@@ -17,6 +17,15 @@ type ChatHistoryProps = {
 const ChatHistory: React.FC<ChatHistoryProps> = ({ messages, loading }) => {
   const [typingResponse, setTypingResponse] = useState<string>('');
   const [typing, setTyping] = useState<boolean>(false);
+
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  };
+
 
   useEffect(() => {
     const lastMessage = messages[messages.length - 1];
@@ -39,11 +48,12 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ messages, loading }) => {
 
       return () => clearInterval(interval);
     }
+    scrollToBottom();
     setTypingResponse('');
   }, [messages]);
 
   return (
-    <div className="chatHistory">
+    <div className="chat-history" ref={chatContainerRef}>
       {messages.map((message, index) => {
         if (message.sender === 'user') {
           return (
