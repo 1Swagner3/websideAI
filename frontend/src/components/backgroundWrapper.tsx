@@ -1,6 +1,7 @@
 import React from "react";
 import '../styles/backgroundWrapper.css';
-import { Logo3D } from "./Logo3d";
+import Logo_GLB from "./logo_glb";
+import VectaryEmbed from "./vectaryEmbed";
 
 
 type BackgroundWrapperProps = {
@@ -10,7 +11,7 @@ type BackgroundWrapperProps = {
 const BackgroundWrapper: React.FC<BackgroundWrapperProps> = ({ component }) => {
     return (
         <div className="background">
-
+            <VectaryEmbed></VectaryEmbed>
             {component}
         </div>
     );
