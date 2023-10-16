@@ -7,6 +7,7 @@ from chatBots.getErrorMessages import formulate_error_message
 from chatBots.getRelevantSegmentsWeighted import get_relevant_segments_weighted
 from chatBots.getSicHatRelevance import get_user_query_relevance_weighted
 from chatBots.getIrrelevanceMessage import get_irrelevance_message
+from chatBots.getQueryTooLongMessage import get_query_too_long_message
 
 
 def validate_user_input(query, timeout_seconds=120):
@@ -24,6 +25,11 @@ def validate_user_input(query, timeout_seconds=120):
 
 
 def _validate_user_input_logic(query):
+    
+    if len(query) > 500:
+        return get_query_too_long_message()
+
+    
     query_relevance = get_user_query_relevance_weighted(query)
 
     if query_relevance.get("irrelevant", 0) == 5:
