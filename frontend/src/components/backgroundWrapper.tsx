@@ -1,10 +1,16 @@
 import React from "react";
 import '../styles/backgroundWrapper.css';
 import { Logo3D } from "./Logo3d";
-function BackgroundWrapper({component}) {
+
+
+type BackgroundWrapperProps = {
+  component: React.ReactNode;
+};
+
+const BackgroundWrapper: React.FC<BackgroundWrapperProps> = ({ component }) => {
     return (
         <div className="background">
-            <Logo3D/>
+
             {component}
         </div>
     );

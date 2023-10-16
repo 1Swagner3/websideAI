@@ -1,11 +1,16 @@
-import React from 'react';
-import { Canvas } from '@react-three/fiber';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import React, { Suspense } from 'react';
+import { Canvas, useLoader } from '@react-three/fiber';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
 
 function Model() {
-  const model = useLoader(GLTFLoader, '../public/Logo3d/logo3d.gltf');
+  const mtl = useLoader(MTLLoader, '/Logo3d/logo.mtl');
+  const obj = useLoader(OBJLoader, '/Logo3d/logo.obj', (loader) => {
+    mtl.preload();
+    loader.setMaterials(mtl);
+  });
 
-  return <primitive object={model.scene} />;
+  return <primitive object={obj} />;
 }
 
 function Logo() {
@@ -13,7 +18,9 @@ function Logo() {
     <Canvas>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
-      <Model />
+      <Suspense fallback={null}>
+        <Model />
+      </Suspense>
     </Canvas>
   );
 }
