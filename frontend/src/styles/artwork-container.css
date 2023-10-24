@@ -1,0 +1,63 @@
+.artwork-container{
+    height: 250px;
+    width: 65%;
+    border: 3px solid white;
+    display: flex;
+    padding: 2px;
+    justify-content: space-between; /* Distribute space between children */
+    position: relative; /* To position the ornament2-container absolutely within it */
+}
+
+.logo{
+    background-image: url('../../public/2023Logo-WHITE.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-right: 25%;
+    height: 100%;
+    width: 50%;
+    animation: rotateLogo 5s infinite linear;
+}
+
+@keyframes rotateLogo {
+    0%   { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+.ornament1{
+    background-image: url('../../public/Ornament-1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    width: 15%;
+}
+
+.ornament2-container{
+    height: 60px;
+    width: 60px; 
+    position: absolute;
+    top: 0px;   
+    right: 0px;   
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.ornament2{
+    background-image: url('../../public/Ornament-2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+    animation: circularRotate 100s infinite linear;
+    transform-origin: center;
+}
+
+@keyframes circularRotate {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
