@@ -1,0 +1,10 @@
+.frosted_glass {
+    width: 85vw; 
+    height: 47.8125vw;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden; 
+}

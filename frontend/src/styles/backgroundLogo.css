@@ -1,0 +1,12 @@
+.background_logo{
+    background-image: url('../../public/2023Logo-WHITE.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 0;
+    height: 100%;
+    width: 50%;
+    position: absolute; /* To position it in relation to the '.background' container */
+    bottom: -250px; /* Distance from the bottom */
+    right: -120px; /* Distance from the right */
+}
