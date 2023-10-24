@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ChatHistory from './chatHistory';
 import ChatInputForm from './chatInputForm';
 import sendQuery from '../service/queryAI';
+import '../styles/chat-component.css';
 
 type Message = {
   sender: 'user' | 'ai';
@@ -30,7 +31,7 @@ const ChatComponent: React.FC = () => {
     };
     
     return (
-      <div>
+      <div className='chat-component'>
         <ChatHistory 
           messages={messages} 
           loading={loading}

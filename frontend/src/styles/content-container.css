@@ -8,8 +8,8 @@
 }
 
 .chat-container{
-    height: 250px;
-    width: 45%;
+    max-height: 100%;
+    max-width: 35%;
     position: relative;
 }
 
@@ -18,4 +18,5 @@
     justify-content: space-between;
     gap: 5%;
     margin-top: 10%;
+    max-height: 40vh;
 }

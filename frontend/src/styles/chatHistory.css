@@ -1,13 +1,13 @@
 .user{
-    font-size: 1.2rem;
-    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    font-family: 'Audiowide', sans-serif;
     color: white;
     margin-bottom: 0.5rem;
 }
 
 .ai{
-    font-size: 1.2rem;
-    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    font-family: 'Audiowide', sans-serif;
     color: rgb(175, 255, 201);
     margin-bottom: 0.5rem;
 }
@@ -22,7 +22,8 @@ a {
 }
 
 .chat-history{
-    max-height: 30vh;
+    height: 85%;
+    width: 100%;
     overflow: scroll;
 }
 
