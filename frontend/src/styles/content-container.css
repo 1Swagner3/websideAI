@@ -1,0 +1,7 @@
+.content-container{
+    height: 90vh;
+    width: 80vw;
+    margin: auto;
+    border: 3px solid red;
+    position: relative;
+}
