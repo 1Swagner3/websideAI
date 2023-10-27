@@ -1,13 +1,14 @@
 
 .headline-container p {
-    font-size: clamp(20px, 10vw, 100px);
+    font-size: clamp(20px, 10vw, 150px);
     text-align: center;
     margin: 0;
     padding: 0;
     font-weight: bold; 
-    letter-spacing: clamp(10px, 7vw, 65px);
+    letter-spacing: clamp(10px, 7vw, 75px);
     line-height: 0.9;
     margin-bottom: -10px;
+    margin-left: 2%;
 }
 
 .filled-text {

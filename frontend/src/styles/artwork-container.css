@@ -1,11 +1,11 @@
 .artwork-container{
-    height: 250px;
+    height: 100%;
     width: 65%;
     border: 3px solid white;
     display: flex;
     padding: 2px;
-    justify-content: space-between; /* Distribute space between children */
-    position: relative; /* To position the ornament2-container absolutely within it */
+    justify-content: space-between;
+    position: relative; 
 }
 
 .logo{
