@@ -5,13 +5,5 @@
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    overflow: hidden; 
-}
-
-.container{
-    height: 90vh;
-    width: 80vw;
-    margin: auto;
-    border: 3px solid red;
-    position: relative;
+    overflow: scroll; 
 }
