@@ -6,7 +6,8 @@
     margin: 0;
     height: 100%;
     width: 50%;
-    position: absolute; /* To position it in relation to the '.background' container */
-    bottom: -250px; /* Distance from the bottom */
-    right: -120px; /* Distance from the right */
+    position: absolute; 
+    bottom: -250px; 
+    right: -120px; 
+    opacity: 0.2;
 }
